@@ -283,6 +283,40 @@ git checkout master
 git merge bugfix
 ```
 
+#### Fast-Forward
+
+Merging a branch is a pretty common operation when using Git.
+In some circumstances, Git by default will try to merge a branch in a fast-forward mode.
+How is this different with a merge without fast-forwarding?
+
+<p align="center">
+    <img src="images/gitbranch.png" height="222" width="205" horizontal-align="center">
+</p>
+
+Let us assume that I created a topic branch named speedup from the current master.
+After working on this branch for a while (three commits, those white circles),
+I finally decided that I am done and then I pushed it to my own remote. Meanwhile,
+nothing else happened in the master branch, it remained in the same state right before I branched off.
+The situation is depicted in the following diagram.
+
+Once the project maintainer got notified that my branch is ready to be integrated,
+she might use the usual steps of git fetch followed by git merge and thus,
+my work is landed in the source tree. Because master has not been changed since the commit
+(gray circle) which serves as the base for the said topic branch, Git will perform the merge using fast-forward.
+The whole series of the commits will be linear. The history will look like the diagram below (left side).
+
+<p align="center">
+    <img src="images/merging.png" height="240" width="464">
+</p>
+Another variant of the merge is to use -no-ff option (it stands for no fast-forward).
+In this case, the history looks slightly different (right side),
+there is an additional commit (dotted circle) emphasizing the merge.
+This commit even has the right message informing us about the merged branch.
+
+The default behavior of Git is to use fast-forwarding whenever possible.
+This can be changed, the no fast-forward mode can be easily set as the default merge
+using the right proper configuration.
+
 ### <a name="Ignore">File .gitignore</a>
 
 This file configure all files you don't want to stage in a commit. You have to create this file at the same level than the **.git** folder. The format for this file is like this:
