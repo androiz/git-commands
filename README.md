@@ -6,18 +6,20 @@ Here you will find a list of useful git commands.
 2. [Create a new local repository](#Create)
 3. [Check out a repository](#Checkout)
 4. [Add/Reset files to Stage (to commits)](#Add)
-5. [Commit](#Commit)
-6. [Push](#Push)
-7. [Status](#Status)
-8. [Connect to a remote repository](#Remote)
-9. [Branches](#Branches)
-10. [Update from the remote repository](#Update)
-11. [Branches](#Branches)
-12. [Tags](#Tags)
-13. [Undo](#Undo)
-14. [Search](#Search)
-15. [Merges](#Merges)
-16. [Ignore](#Ignore)
+5. [Stash](#Stash)
+6. [Commit](#Commit)
+7. [Push](#Push)
+8. [Status](#Status)
+9. [Connect to a remote repository](#Remote)
+10. [Branches](#Branches)
+11. [Update from the remote repository](#Update)
+12. [Branches](#Branches)
+13. [Tags](#Tags)
+14. [Undo](#Undo)
+15. [Search](#Search)
+16. [Rebases](#Rebases)
+17. [Merges](#Merges)
+18. [Ignore](#Ignore)
 
 
 ### <a name="Who">Tell Git who you are</a>
@@ -65,6 +67,21 @@ To reset these files from stage:
 ```
 git reset <filename> 	# Reset one files
 git reset				# Reset all files
+```
+
+### <a name="Stash">Stash</a>
+
+Sometimes, we will want to pull changes or work through differents branches, but we have changes that we want to preservate.
+So that, we can do an stash, in orther to generate a wip:
+
+```
+git stash
+```
+
+If we want to restore our changes in the last wip, we just have to do:
+
+```
+git stash pop
 ```
 
 ### <a name="Commit">Commit</a>
@@ -237,6 +254,25 @@ Search the working directory for foo():
 ```
 git grep "foo()"
 ```
+
+### <a name="Rebases">Rebases</a>
+
+Rebase is like a merge but without diamond shape. That means that we will allocate our commits above commits from the other branch.
+
+If you want to do a rebase, first, you have to be in the local branch which will receive the changes.
+
+```
+git branch master
+git rebase bugfix
+```
+
+Also we can decide what commits will rebase, squash them and other options. For that, we can do an interactive rebase:
+
+```
+git rebase -i bugfix
+```
+
+This will open an interactive screen so as to decide the commits to rebase.
 
 ### <a name="Merges">Merges</a>
 
