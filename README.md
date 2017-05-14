@@ -308,14 +308,20 @@ The whole series of the commits will be linear. The history will look like the d
 <p align="center">
     <img src="images/merging.png" height="240" width="464">
 </p>
-Another variant of the merge is to use -no-ff option (it stands for no fast-forward).
+
+Another variant of the merge is to use ```-no-ff``` option (it stands for no fast-forward).
 In this case, the history looks slightly different (right side),
 there is an additional commit (dotted circle) emphasizing the merge.
 This commit even has the right message informing us about the merged branch.
 
+
 The default behavior of Git is to use fast-forwarding whenever possible.
-This can be changed, the no fast-forward mode can be easily set as the default merge
+This can be changed, the **no fast-forward** mode can be easily set as the default merge
 using the right proper configuration.
+
+```
+git merge --no-ff <branch>
+```
 
 ### <a name="Ignore">File .gitignore</a>
 
